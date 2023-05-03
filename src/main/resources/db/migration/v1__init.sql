@@ -1,0 +1,1 @@
+create table products (id bigserial primary key, title varchar(255), price DECIMAL (5,2), cost DECIMAL (5,2));

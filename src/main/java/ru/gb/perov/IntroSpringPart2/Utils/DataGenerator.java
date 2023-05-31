@@ -2,15 +2,20 @@ package ru.gb.perov.IntroSpringPart2.Utils;
 
 import com.github.javafaker.Faker;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.time.DateUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import ru.gb.perov.IntroSpringPart2.Data.Product;
+import ru.gb.perov.IntroSpringPart2.Data.Role;
+import ru.gb.perov.IntroSpringPart2.Data.User;
 import ru.gb.perov.IntroSpringPart2.Repository.ProductRepositiry;
+import ru.gb.perov.IntroSpringPart2.Repository.RoleRepository;
+import ru.gb.perov.IntroSpringPart2.Repository.UserRepository;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -19,8 +24,13 @@ public class DataGenerator {
     private static final int NUMBER_START_CUSTOMERS = 5;
     private static final int NUMBER_START_ORDERS = 15;
     private static final int NUMBER_START_ORDER_STRINGS = 100;
+    private static final int NUMBER_START_USER = 3;
+
 
     private final ProductRepositiry productRepository;
+    private final RoleRepository roleRepository;
+    private final UserRepository userRepository;
+
 //    @Autowired
 //    private CustomerRepository customerRepository;
 //    @Autowired
@@ -31,6 +41,23 @@ public class DataGenerator {
     @EventListener(ApplicationReadyEvent.class)
     public void generateProductsOnStartUp() {
         Faker faker = new Faker();
+
+//        Role r1 = new Role();
+//        r1.setName("ADMIN");
+//        roleRepository.saveAndFlush(r1);
+//        Role r2 = new Role();
+//        r2.setName("MANAGER");
+//        roleRepository.saveAndFlush(r2);
+//
+//
+//        for (int i = 1; i <= NUMBER_START_USER; i++) {
+//            User u = new User();
+//            u.setUsername("user" + i);
+//            u.setPassword("password" + i);
+//            ArrayList roles = new ArrayList<>(Collections.singleton(roleRepository.findByName("MANAGER")));
+//            u.setRoles(roles);
+//            userRepository.saveAndFlush(u);
+//        }
 
         for (int i = 1; i <= NUMBER_START_PRODUCTS; i++) {
             Product p = new Product();
@@ -69,5 +96,14 @@ public class DataGenerator {
 //            os.setOrderStringPrice((double) Math.round(Math.random() * 5000 + 25 * 100d) / 100d);
 //            orderStringRepository.saveAndFlush(os);
 //        }
+
+        for (int i = 1; i <= NUMBER_START_CUSTOMERS; i++) {
+            Product p = new Product();
+            p.setTitle(faker.food().ingredient());
+            p.setPrice(faker.number().randomDouble(2, 1, 100));
+            p.setCost(faker.number().randomDouble(2, 0, (int) (p.getPrice() + 1)));
+            productRepository.saveAndFlush(p);
+        }
+
     }
 }

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en" ng-app="app" xmlns:text-align="http://www.w3.org/1999/xhtml" xmlns:align="http://www.w3.org/1999/xhtml"
+      xmlns:position="http://www.w3.org/1999/xhtml" xmlns:width="http://www.w3.org/1999/xhtml"
+      xmlns:left="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>SpringBoot HomeWork 8</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="index.js"></script>
+</head>
+
+<body ng-controller="startController">
+
+<title>Start</title>
+<div class="header" style="margin: 0 auto; margin-top: 10%; text-align: center;">
+    <ul class="nav nav-tabs">
+        <li class="nav-item" style="margin: 0 auto; text-align: center;">
+            <h3>Please login</h3>
+        </li>
+    </ul>
+
+    <form name="authForm">
+        <table class="table table-hover" style="width: 40%; margin: 0 auto; text-align: center;">
+            <tr>
+                <td>
+                    <input class="form-control" type="text" name="user" id="user" size="20" pattern="[A-Za-z0-9]*"
+                           placeholder="username (Latin A-Z, a-z and digits 0-9)" style="text-align: center;"/>
+                </td>
+                <td>
+                    <input class="form-control" type="password" name="password" id="password" size="20"
+                           pattern="[A-Za-z0-9]*"
+                           placeholder="password (Latin A-Z, a-z and digits 0-9)" style="text-align: center;"/>
+                </td>
+            </tr>
+        </table>
+        <button class="btn btn-success" ng-click="login()">
+            Login witn 'user'-'password'
+        </button>
+    </form>
+</div>
+</body>
+</html>

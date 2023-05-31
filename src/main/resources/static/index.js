@@ -175,7 +175,6 @@ app.controller('cartController', ['$scope', '$http', 'contextPath', function ($s
                     console.log(responseCart.data);
                 });
         };
-
         $scope.fillCartTable();
 
     }]
@@ -184,18 +183,17 @@ app.controller('cartController', ['$scope', '$http', 'contextPath', function ($s
 app.controller('startController', ['$scope', '$http', 'contextPath', function ($scope, $http, contextPath) {
         // const contextPath = 'http://localhost:8180/app';
 
-
-    $scope.login = function () {
-        $http({
-            url: '/app/auth/token',
-            method: 'post',
-            params: {
-                username: "user",
-                password: "pass"
-            }
-        })
-    };
-
-    $scope.login();
+        $scope.login = function () {
+            $http.post('http://localhost:8180/app/auth/token',
+                {
+                    userName: document.getElementsByName("user")[0].value,
+                    password: document.getElementsByName("password")[0].value
+                }
+            ).then(function (response) {
+                console.log(document.getElementsByName("user")[0].value);
+                console.log(document.getElementsByName("password")[0].value);
+                console.log(response.data);
+            });
+        };
     }]
-)
+);
